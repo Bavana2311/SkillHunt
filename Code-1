@@ -1,0 +1,20 @@
+INPUT:
+def find_max_profit(stock_prices):
+    if not stock_prices:
+        return 0
+
+    min_price_so_far = float('inf')
+    max_profit = 0
+    for price in stock_prices:
+        if price < min_price_so_far:
+            min_price_so_far = price  
+        elif price - min_price_so_far > max_profit:
+            max_profit = price - min_price_so_far  
+    return max_profit
+user_input = list(map(int, input().split()))
+days = user_input[0]
+stock_prices = user_input[1:]  
+print(find_max_profit(stock_prices))
+OUTPUT:
+4 10 9 8 6
+0
