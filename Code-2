@@ -1,0 +1,29 @@
+INPUT:
+def preprocess_treasure_count(path):
+    n = len(path)
+    prefix = [0] * (n + 1)
+
+    for i in range(n):
+        prefix[i + 1] = prefix[i] + (1 if path[i] == 'T' else 0)
+
+    return prefix
+
+def count_treasures(prefix, queries):
+    results = []
+    for start, end in queries:
+        results.append(prefix[end] - prefix[start - 1])
+    return results
+path = input().strip()
+num_queries = int(input().strip())
+
+queries = [tuple(map(int, input().split())) for _ in range(num_queries)]
+prefix_sum = preprocess_treasure_count(path)
+results = count_treasures(prefix_sum, queries)
+print("\n".join(map(str, results)))
+OUTPUT:
+T..T.T
+2
+1 5
+3 6
+2
+2
